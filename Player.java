@@ -54,7 +54,7 @@ public class Player implements GameObject {
         int www=(int) rnd*Width;
         int hhh=(int) rnd*Height;
         graphics.setColor(Color.white);
-        graphics.drawOval(0, 0, Width-1, Height-1);
+        graphics.drawOval(0, 0, Width - 1, Height - 1);
         Spirits=new ArrayList<Spirit>();
 
     }
@@ -122,5 +122,55 @@ public class Player implements GameObject {
     @Override
     public String GetType() {
         return "Player";
+    }
+    public void Act(World world){
+        System.out.println("Act");
+        ArrayList<GameObject> Intersects=world.getObject(X,Y,GetRadius());
+        GameObject Target=null;
+        for (GameObject obj:Intersects){
+            if (obj!=this){
+                Target=obj;
+                break;
+            }
+        }
+        if (Target!=null) {
+            System.out.println("Target Take");
+            if (Target.GetType().equals("Anomaly")) {
+                System.out.println("Anomaly");
+                if (((Anomaly)Target).GetOwner()!=this) {
+                    Life -= 5;
+                    Energy += 5;
+                }
+            } else if (Target.GetType().equals("Spirit")) {
+                System.out.println("Spirit");
+                if (((Spirit)Target).GetOwner()!=null) {
+                    System.out.println("Owner not NULL");
+                    if (((Anomaly)((Spirit)Target).GetOwner()).GetOwner()==null) {
+                        System.out.println("Anomaly owner NULL");
+                        if (Spirits.size()<Power/10+10) {
+                            System.out.println("We have Energy to catch");
+                            ((Anomaly) ((Spirit) Target).GetOwner()).RemoveSpirit((Spirit) Target);
+                            ((Spirit) Target).SetOwner(this);
+                            world.RemoveObject(Target);
+                            Spirits.add((Spirit) Target);
+                            Energy-=5;
+                        }
+                    }
+                } else
+                {
+                    System.out.println("Spirit owner NULL");
+                    if (Spirits.size()<Power/10+10) {
+                        System.out.println("We have Energy to catch");
+
+                        ((Spirit) Target).SetOwner(this);
+                        world.RemoveObject(Target);
+                        Spirits.add((Spirit) Target);
+                        Energy-=5;
+                    }
+                }
+
+            }
+            ;
+        }
     }
 }

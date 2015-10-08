@@ -50,7 +50,7 @@ public class World {
     }
     public void RemoveObject(GameObject obj){
 
-        ObjToRem.remove(obj);
+        ObjToRem.add(obj);
 
     }
 
@@ -89,6 +89,8 @@ public class World {
     public  void Tick(){
         Objects.removeAll(ObjToRem);
         Objects.addAll(ObjToAdd);
+        ObjToRem.clear();
+        ObjToAdd.clear();
         for (GameObject obj:Objects){
             obj.Tick(this);
         }

@@ -86,4 +86,14 @@ public class Anomaly implements GameObject {
     public String GetType() {
         return "Anomaly";
     }
+    public GameObject GetOwner(){
+        return owner;
+    }
+    public void SetOwner(GameObject owner){
+        this.owner=owner;
+    }
+    public void RemoveSpirit(Spirit spirit){
+        spirit.SetOwner(null);
+        Spirits.remove(spirit);
+    }
 }

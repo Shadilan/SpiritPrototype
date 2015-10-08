@@ -108,4 +108,10 @@ public class Spirit implements GameObject{
     public String GetType() {
         return "Spirit";
     }
+    public GameObject GetOwner(){
+        return owner;
+    }
+    public void SetOwner(GameObject owner){
+        this.owner=owner;
+    }
 }
