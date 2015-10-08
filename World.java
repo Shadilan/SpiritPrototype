@@ -93,5 +93,18 @@ public class World {
             obj.Tick(this);
         }
     }
+    public ArrayList<GameObject> getObject(int x,int y,int rad){
+        ArrayList<GameObject> result=new ArrayList<GameObject>();
+        for (GameObject obj:Objects){
+           int sx=obj.GetX();
+            int sy=obj.GetY();
+            int sr=obj.GetRadius();
+            int rr=(sx-x)*(sx-x)+(sy-y)*(sy-y)-(sr+rad)*(sr+rad);
+            if (rr<0){
+                result.add(obj);
+            }
+        }
+        return result;
+    }
 
 }

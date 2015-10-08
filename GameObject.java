@@ -11,6 +11,8 @@ public interface GameObject {
     public int GetY();
     public int GetWidth();
     public int GetHeight();
+    public int GetRadius();
+
     public void Tick(World world);
     public void destroy(World world);
     public void Action(World world,GameObject actor);

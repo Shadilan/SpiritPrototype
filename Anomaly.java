@@ -55,6 +55,11 @@ public class Anomaly implements GameObject {
     }
 
     @Override
+    public int GetRadius() {
+        return 50;
+    }
+
+    @Override
     public void Tick(World world) {
         if (owner==null && Spirits.size()<10)
             if (Math.random()*100000<1){

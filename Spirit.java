@@ -84,6 +84,11 @@ public class Spirit implements GameObject{
     }
 
     @Override
+    public int GetRadius() {
+        return 20;
+    }
+
+    @Override
     public void Tick(World world) {
         faze++;
         if (faze>4) faze=1;

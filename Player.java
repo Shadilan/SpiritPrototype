@@ -23,7 +23,7 @@ public class Player implements GameObject {
     public Image drawStat(){
        StatView=new BufferedImage(100,100,BufferedImage.TYPE_INT_ARGB);
         Graphics gr=StatView.getGraphics();
-        gr.clearRect(0,0,100,100);
+        gr.clearRect(0, 0, 100, 100);
         gr.setColor(Color.white);
         gr.drawString("Life:", 5, 10);
         gr.drawString("Energy:",5,20);
@@ -32,7 +32,7 @@ public class Player implements GameObject {
         gr.drawString(""+Life,50,10);
         gr.drawString(""+Energy,50,20);
         gr.drawString(""+Power,50,30);
-        gr.drawString(""+Spirits.size(),50,40);
+        gr.drawString("" + Spirits.size(), 50, 40);
         return StatView;
 
     }
@@ -85,6 +85,11 @@ public class Player implements GameObject {
     @Override
     public int GetHeight() {
         return Height;
+    }
+
+    @Override
+    public int GetRadius() {
+        return 20;
     }
 
     @Override
