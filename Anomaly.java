@@ -16,7 +16,7 @@ public class Anomaly implements GameObject {
     private int Power=100;
 
     private Image img;
-    private  GameObject Owner;
+    private  GameObject owner=null;
     private ArrayList<Spirit> Spirits;
 
     public  Anomaly(int x,int y){
@@ -56,7 +56,15 @@ public class Anomaly implements GameObject {
 
     @Override
     public void Tick(World world) {
-
+        if (owner==null && Spirits.size()<10)
+            if (Math.random()*100000<1){
+                int sx= (int) (Math.random()*400-200);
+                int sy= (int) (Math.random()*400-200);
+                //Проверить не пересечение с другими Духами
+                Spirit spr=new Spirit(sx+X,sy+Y,this);
+                Spirits.add(spr);
+                world.AddObject(spr);
+            }
     }
 
     @Override

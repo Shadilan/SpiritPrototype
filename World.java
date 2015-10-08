@@ -15,6 +15,8 @@ public class World {
     private int Height;
     private int Width;
     private ArrayList<GameObject> Objects;
+    private ArrayList<GameObject> ObjToAdd;
+    private ArrayList<GameObject> ObjToRem;
     public World(int width, int height,int visibleWidth,int visibleHeight,int centerX,int centerY){
         Width=width;
         Height=height;
@@ -22,6 +24,8 @@ public class World {
         VisibleWidth=visibleWidth;
         CenterX=centerX;
         CenterY=centerY;
+        ObjToAdd=new ArrayList<GameObject>();
+        ObjToRem=new ArrayList<GameObject>();
         Objects=new ArrayList<GameObject>();
     }
     public World(int width, int height,int visibleWidth,int visibleHeight){
@@ -31,7 +35,10 @@ public class World {
         VisibleWidth=visibleWidth;
         CenterX=width/2;
         CenterY=height/2;
+        ObjToAdd=new ArrayList<GameObject>();
+        ObjToRem=new ArrayList<GameObject>();
         Objects=new ArrayList<GameObject>();
+
 
     }
     public void SetCenter(int x,int y){
@@ -39,13 +46,11 @@ public class World {
         CenterX=x;
     }
     public void AddObject(GameObject obj){
-
-        Objects.add(obj);
-
+        ObjToAdd.add(obj);
     }
     public void RemoveObject(GameObject obj){
 
-        Objects.remove(obj);
+        ObjToRem.remove(obj);
 
     }
 
@@ -58,11 +63,11 @@ public class World {
         bufferGraphics.setColor(Color.cyan);
         int smX=(CenterX%100);
         int smY=(CenterY%100);
-        for (int i=0;i<Math.round(VisibleWidth/100)+1;i++){
+        for (int i=0;i<Math.round(VisibleWidth/100)+2;i++){
             int ix=i*100-smX;
             bufferGraphics.drawLine(ix,0,ix,VisibleHeight);
         }
-        for (int i=0;i<Math.round(VisibleHeight/100)+1;i++){
+        for (int i=0;i<Math.round(VisibleHeight/100)+2;i++){
             int iy=i*100-smY;
             bufferGraphics.drawLine(0,iy,VisibleWidth,iy);
         }
@@ -82,6 +87,8 @@ public class World {
 
     }
     public  void Tick(){
+        Objects.removeAll(ObjToRem);
+        Objects.addAll(ObjToAdd);
         for (GameObject obj:Objects){
             obj.Tick(this);
         }

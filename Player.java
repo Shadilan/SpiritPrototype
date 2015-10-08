@@ -18,7 +18,24 @@ public class Player implements GameObject {
     int Life;
     int Energy;
     int Power;
+    Image StatView;
     ArrayList<Spirit> Spirits;
+    public Image drawStat(){
+       StatView=new BufferedImage(100,100,BufferedImage.TYPE_INT_ARGB);
+        Graphics gr=StatView.getGraphics();
+        gr.clearRect(0,0,100,100);
+        gr.setColor(Color.white);
+        gr.drawString("Life:", 5, 10);
+        gr.drawString("Energy:",5,20);
+        gr.drawString("Power:",5,30);
+        gr.drawString("Spirits:",5,40);
+        gr.drawString(""+Life,50,10);
+        gr.drawString(""+Energy,50,20);
+        gr.drawString(""+Power,50,30);
+        gr.drawString(""+Spirits.size(),50,40);
+        return StatView;
+
+    }
     public Player(int x,int y){
         Width=40;
         Height=40;
@@ -83,7 +100,9 @@ public class Player implements GameObject {
         graphics.drawOval(0,0,Width,Height);
         graphics.drawLine(www,0,Width-www,Height);
         graphics.drawLine(0,hhh,Width,Height-hhh);*/
+
     }
+
 
     @Override
     public void destroy(World world) {
