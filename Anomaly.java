@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
- * Created by zhitnikov.bronislav on 07.10.2015.
+ * Created by Shadilan on 07.10.2015.
  */
 public class Anomaly implements GameObject {
 
