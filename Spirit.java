@@ -4,6 +4,7 @@ import sun.org.mozilla.javascript.internal.ast.WithStatement;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.rmi.MarshalledObject;
 import java.security.acl.Owner;
 
 /**

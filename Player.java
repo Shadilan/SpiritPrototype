@@ -137,7 +137,7 @@ public class Player implements GameObject {
             System.out.println("Target Take");
             if (Target.GetType().equals("Anomaly")) {
                 System.out.println("Anomaly");
-                if (((Anomaly)Target).GetOwner()!=this) {
+                if (((Anomaly)Target).GetOwner()!=this && Life>=5) {
                     Life -= 5;
                     Energy += 5;
                 }

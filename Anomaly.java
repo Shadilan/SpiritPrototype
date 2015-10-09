@@ -61,15 +61,17 @@ public class Anomaly implements GameObject {
 
     @Override
     public void Tick(World world) {
-        if (owner==null && Spirits.size()<10)
-            if (Math.random()*100000<1){
-                int sx= (int) (Math.random()*400-200);
-                int sy= (int) (Math.random()*400-200);
+
+        if (owner==null && Spirits.size()<10) {
+            if (Math.random() * 10000 < 10) {
+                int sx = (int) (Math.random() * 400 - 200);
+                int sy = (int) (Math.random() * 400 - 200);
                 //Проверить не пересечение с другими Духами
-                Spirit spr=new Spirit(sx+X,sy+Y,this);
+                Spirit spr = new Spirit(sx + X, sy + Y, this);
                 Spirits.add(spr);
                 world.AddObject(spr);
             }
+        }
     }
 
     @Override
