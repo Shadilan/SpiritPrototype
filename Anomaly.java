@@ -18,7 +18,7 @@ public class Anomaly implements GameObject {
     private Image img;
     private  GameObject owner=null;
     private ArrayList<Spirit> Spirits;
-
+    //private ArrayList<int> Codes;
     public  Anomaly(int x,int y){
         X=x;
         Y=y;
